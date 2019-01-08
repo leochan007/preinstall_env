@@ -1,0 +1,2 @@
+#sslocal -c proxy.json $1
+/home/leo/tools/Shadowsocks-Qt5-3.0.0-x86_64.AppImage

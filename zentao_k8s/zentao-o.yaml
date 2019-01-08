@@ -1,0 +1,61 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  annotations:
+    field.cattle.io/creatorId: ""
+    field.cattle.io/publicEndpoints: '[{"port":31180,"protocol":"TCP","serviceName":"pm:zentao-o-server-nodeport","allNodes":true}]'
+  labels:
+    workload.user.cattle.io/workloadselector: deployment-pm-zentao-o-server
+  name: zentao-o-server
+  namespace: pm
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-pm-zentao-o-server
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"zentao-o-server-nodeport","kind":"NodePort","name":"80tcp311801","protocol":"TCP","sourcePort":31180}]]'
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-pm-zentao-o-server
+    spec:
+      containers:
+      - image: leochan007/zentao-o:latest
+        imagePullPolicy: Always
+        name: zentao-o-server
+        ports:
+        - containerPort: 80
+          name: 80tcp311801
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /app/zentaopms
+          name: files
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /data/zentao/zentaopms
+          type: ""
+        name: files

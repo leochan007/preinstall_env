@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  jenkins:
+    image: jenkins
+    container_name: leo_jenkins
+    restart: always
+    ports:
+      - "28080:8080"
+      - "50000:50000"
+    volumes:
+      - ./var/jenkins:/var/jenkins_home

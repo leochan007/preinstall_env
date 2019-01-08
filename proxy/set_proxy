@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export http_proxy=http://localhost:31080
+export https_proxy=$http_proxy
+export no_proxy=127.0.0.1

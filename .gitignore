@@ -1,0 +1,8 @@
+*.tar
+*.zip
+*.tar.gz
+*.tar.xz
+*.bz
+.DS_Store
+tmp
+lua-5.3.4
