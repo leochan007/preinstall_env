@@ -2,7 +2,10 @@ git clone https://github.com/istio/istio
 
 # brew install kubernetes-helm
 
-helm template install/kubernetes/helm/istio --name istio --namespace istio-system > istio.yaml
+helm template install/kubernetes/helm/istio --name istio --namespace istio-system \
+  --set gateways.istio-ingressgateway.type=NodePort \
+  --set ingress.service.type=NodePort \
+  > istio.yaml
 
 kubectl create namespace istio-system
 kubectl create -f istio.yaml
@@ -40,9 +43,10 @@ export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http")].port}')
 export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
 
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 # Node Port
-export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
-export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+$ export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
 
 samples/bookinfo/platform/kube/cleanup.sh
 
