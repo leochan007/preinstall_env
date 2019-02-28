@@ -1,11 +1,11 @@
 {
-    "server":"",
-    "server_port":8170,
+    "server":"0.0.0.0",
+    "server_port":19171,
     "local_address": "127.0.0.1",
     "local_port":28000,
     "password":"",
     "timeout":300,
     "method":"aes-256-cfb",
     "fast_open": true,
-    "workers":1
+    "workers":5
 }
