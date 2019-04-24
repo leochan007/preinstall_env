@@ -4,7 +4,7 @@ VER=1.12
 
 file=go$VER.linux-amd64.tar.gz
 goroot=/usr/local/go
-gopath=~/gopath
+gopath=/workspace/go
 
 if [ ! -d "$goroot" ]; then
 

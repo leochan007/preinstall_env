@@ -10,7 +10,8 @@ sudo update-grub
 #sudo docker ps -a | awk -F ' ' '{print $1}' |xargs -e sudo docker stop
 #echo y | sudo docker system prune
 
-sudo docker stop $(sudo docker ps -aq) && sudo docker  rm -v $(sudo docker ps -aq)
+sudo docker stop $(sudo docker ps -aq)
+sudo docker rm -v $(sudo docker ps -aq)
 sudo rm -rf /var/lib/etcd/* && sudo rm -rf /etc/kubernetes/*
 
 sudo docker run -d --restart=unless-stopped \
