@@ -28,7 +28,7 @@ chmod a+x *.sh
 
 ./install_basic.sh
 
-./all_steps.sh
+#./all_steps.sh
 
 #
 

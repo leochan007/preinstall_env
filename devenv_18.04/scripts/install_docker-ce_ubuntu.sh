@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sudo apt-get remove docker docker-engine docker.io
+sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install -y \
    apt-transport-https \
    ca-certificates \
@@ -19,11 +19,10 @@ sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/li
 
 sudo apt-get update
 
-#apt-cache madison docker-ce
+apt-cache madison docker-ce
 
-#sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-xenial
-sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-bionic
-#sudo apt-get install -y docker-ce
+#sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-bionic
+sudo apt-get install -y docker-ce
 #sudo groupadd docker
 sudo gpasswd -a vagrant docker
 sudo service docker restart
