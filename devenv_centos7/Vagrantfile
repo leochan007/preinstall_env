@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# This vagrantfile creates a VM with the development environment
+# configured and ready to go.
+#
+# The setup script (env var $script) in this file installs docker.
+# This is not in the setup.sh file because the docker install needs
+# to be secure when running on a real linux machine.
+# The docker environment that is installed by this script is not secure,
+# it depends on the host being secure.
+#
+# At the end of the setup script in this file, a call is made
+# to run setup.sh to create the developer environment.
+
+# This is the mount point for the sync_folders of the source
+ROOT_DIR = "/root_dir"
+WS_DIR = "/workspace"
+
+$dev_script = <<SCRIPT
+set -x
+
+cd /workspace/preinstall_env/devenv/scripts
+
+chmod a+x *.sh
+
+#./change_src.sh
+
+#./install_basic.sh
+
+#./all_steps.sh
+
+#
+
+SCRIPT
+
+Vagrant.require_version ">= 2.0.0"
+Vagrant.configure('2') do |config|
+  
+  config.vm.boot_timeout = 1000
+
+  config.vm.synced_folder "../../../", "#{ROOT_DIR}"
+  config.vm.synced_folder "../../", "#{WS_DIR}"
+
+  config.vm.define "centos7_dev", primary: true do |dev|
+    dev.vm.box = "generic/centos7"
+    dev.vm.provision :shell, inline: $dev_script
+
+    dev.vm.network "public_network"
+
+    #dev.vm.network :forwarded_port, guest: 8081, host: 28081
+
+    #dev.vm.network :forwarded_port, guest: 443, host: 28443
+
+    #dev.ssh.username = "vagrant"
+    #dev.ssh.password = "vagrant"
+
+    dev.vm.provider :virtualbox do |vb|
+      vb.name = "centos7_dev"
+      vb.customize ['modifyvm', :id, '--memory', '2048']
+      vb.cpus = 2
+    end
+  end
+
+end
