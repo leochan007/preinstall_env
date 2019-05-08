@@ -48,15 +48,15 @@ Vagrant.configure('2') do |config|
 
     dev.vm.network "public_network"
 
-    dev.vm.network :forwarded_port, guest: 8081, host: 28081
+    #dev.vm.network :forwarded_port, guest: 8081, host: 28081
 
-    dev.vm.network :forwarded_port, guest: 443, host: 28443
+    #dev.vm.network :forwarded_port, guest: 443, host: 28443
 
     dev.ssh.username = "vagrant"
     #dev.ssh.password = "vagrant"
 
     dev.vm.provider :virtualbox do |vb|
-      vb.name = "dev"
+      vb.name = "dev16.04"
       vb.customize ['modifyvm', :id, '--memory', '2048']
       vb.cpus = 2
     end

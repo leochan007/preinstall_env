@@ -25,23 +25,23 @@ openssl s_client -connect ${URL} -showcerts </dev/null 2>/dev/null \
 #keytool -v -alias mavensrv -import -file /usr/local/share/ca-certificates/${STR}.crt \
 # -keystore ${TRUST_PATH}
 
-JAVA_HOME=/usr/lib/jvm/java-8-oracle
+#JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
-echo 'security folder='${JAVA_HOME}/lib/security
+#echo 'security folder='${JAVA_HOME}/lib/security
 
-keytool -printcert -rfc -sslserver ${URL} > ${URL}.pem
+#keytool -printcert -rfc -sslserver ${URL} > ${URL}.pem
 
-echo 'try print pem file:'
+#echo 'try print pem file:'
 
-keytool -printcert -file ${URL}.pem
+#keytool -printcert -file ${URL}.pem
 
-echo 'end of pem file'
+#echo 'end of pem file'
 
-mkdir -p ${JAVA_HOME}/lib/security
+#mkdir -p ${JAVA_HOME}/lib/security
 
-keytool -delete -alias ${URL} -keystore ${JAVA_HOME}/lib/security/cacerts
-keytool -importcert -file ${URL}.pem -alias ${URL} -storepass ${PASSWORD} \
--keystore ${JAVA_HOME}/lib/security/cacerts
+#keytool -delete -alias ${URL} -keystore ${JAVA_HOME}/lib/security/cacerts
+#keytool -importcert -file ${URL}.pem -alias ${URL} -storepass ${PASSWORD} \
+#-keystore ${JAVA_HOME}/lib/security/cacerts
 
 #cp -f .mavenrc ~/
 

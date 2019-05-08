@@ -4,6 +4,6 @@
 
 ./install_docker-ce_ubuntu.sh
 
-./install_java.sh
+#./install_java.sh
 
 #./install_mvn.sh
