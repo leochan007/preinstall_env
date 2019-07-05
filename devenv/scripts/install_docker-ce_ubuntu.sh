@@ -21,9 +21,13 @@ sudo apt-get update
 
 #apt-cache madison docker-ce
 
-sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-xenial
-#sudo apt-get install -y docker-ce
+#sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-xenial
+sudo apt-get install -y docker-ce
 #sudo groupadd docker
 sudo gpasswd -a vagrant docker
 sudo service docker restart
 newgrp - docker
+
+
+#https://docs.docker.com/install/linux/docker-ce/ubuntu/
+

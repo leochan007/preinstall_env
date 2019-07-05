@@ -8,5 +8,7 @@
 
 #java -jar jenkins.war
 
-nohup java -jar jenkins.war &
+export JENKINS_HOME=/home/jenkins/jenkins_home
+export JENKINS_PORT=31180
+JENKINS_HOME=/home/jenkins/jenkins_home nohup java -jar jenkins.war --httpPort=31180 &
 #java -Dhudson.DNSMultiCast.disabled=true -Dhudson.udp=-1 -jar jenkins.war

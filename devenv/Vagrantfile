@@ -41,6 +41,9 @@ Vagrant.configure('2') do |config|
 
   config.vm.synced_folder "../../../", "#{ROOT_DIR}"
   config.vm.synced_folder "../../", "#{WS_DIR}"
+  
+  #vagrant plugin install vagrant-disksize
+  config.disksize.size = '50GB'
 
   config.vm.define "dev", primary: true do |dev|
     dev.vm.box = "ubuntu/xenial64"
@@ -57,9 +60,11 @@ Vagrant.configure('2') do |config|
 
     dev.vm.provider :virtualbox do |vb|
       vb.name = "dev16.04"
+      #, '--size', 50000 * 1024
       vb.customize ['modifyvm', :id, '--memory', '2048']
       vb.cpus = 2
     end
+    
   end
 
 end
