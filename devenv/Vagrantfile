@@ -43,7 +43,7 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder "../../", "#{WS_DIR}"
   
   #vagrant plugin install vagrant-disksize
-  config.disksize.size = '50GB'
+  #config.disksize.size = '50GB'
 
   config.vm.define "dev", primary: true do |dev|
     dev.vm.box = "ubuntu/xenial64"
