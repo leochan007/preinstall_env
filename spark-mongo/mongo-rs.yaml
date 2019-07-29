@@ -25,6 +25,11 @@ spec:
         workload.user.cattle.io/workloadselector: statefulSet-bigdata-mongo-rs
     spec:
       containers:
+      - envFrom:
+        - configMapRef:
+            name: configmap-mongo-auth
+        - secretRef:
+            name: secret-mongo
       - image: mongo:4.0.10-xenial
         imagePullPolicy: Always
         name: mongo-rs

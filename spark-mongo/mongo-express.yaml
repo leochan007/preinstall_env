@@ -3,11 +3,11 @@ kind: Deployment
 metadata:
   annotations:
     field.cattle.io/creatorId: ""
-    field.cattle.io/publicEndpoints: '[{"port":18081,"protocol":"TCP","serviceName":"default:mongo-express-nodeport","allNodes":true}]'
+    field.cattle.io/publicEndpoints: '[{"port":31081,"protocol":"TCP","serviceName":"default:mongo-express-nodeport","allNodes":true}]'
   labels:
     workload.user.cattle.io/workloadselector: deployment-default-mongo-express
   name: mongo-express
-  namespace: eos-dapp
+  namespace: bigdata
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -23,7 +23,7 @@ spec:
   template:
     metadata:
       annotations:
-        field.cattle.io/ports: '[[{"containerPort":8081,"dnsName":"mongo-express-nodeport","kind":"NodePort","name":"8081tcp180811","protocol":"TCP","sourcePort":18081}]]'
+        field.cattle.io/ports: '[[{"containerPort":8081,"dnsName":"mongo-express-nodeport","kind":"NodePort","name":"8081tcp310811","protocol":"TCP","sourcePort":31081}]]'
       labels:
         workload.user.cattle.io/workloadselector: deployment-default-mongo-express
     spec:
@@ -37,7 +37,7 @@ spec:
         name: mongo-express
         ports:
         - containerPort: 8081
-          name: 8081tcp180811
+          name: 8081tcp310811
           protocol: TCP
         resources: {}
         securityContext:
