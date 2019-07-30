@@ -12,6 +12,7 @@
 
 import os
 from pyspark.sql import SparkSession
+import time
 
 # set PYSPARK_PYTHON to python36
 #os.environ['PYSPARK_PYTHON'] = '/usr/bin/python3'
@@ -25,8 +26,8 @@ output_uri = "mongodb://demo:demo@dev.luomuxinxi.com:31017/spark.spark_test?auth
 # 创建spark，默认使用本地环境，或者"spark://master:7077"
 spark = SparkSession \
     .builder \
-    .master("local") \
-    .appName("MyApp") \
+    .master("spark://stg-b1:7077") \
+    .appName("demo2") \
     .config("spark.mongodb.input.uri", input_uri) \
     .config("spark.mongodb.output.uri", output_uri) \
     .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.11:2.4.1') \
@@ -77,5 +78,8 @@ if __name__ == '__main__':
    ("Dwalin", 169), ("Oin", 167), ("Gloin", 158), ("Fili", 82), ("Bombur", None)], ["name", "age"])
     people.write.format("mongo").mode("append").save()
     people.show()
+
+    time.sleep(10)
+
     print('success')
     

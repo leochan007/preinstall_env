@@ -1,18 +1,19 @@
-#!/usr/bin/env python3      
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from pyspark.sql import SparkSession
 
 if __name__ == '__main__':
 
+    #.config('spark.kubernetes.container.image', 'leochan007/spark-py:v2.4.3') \
+
     spark = SparkSession.builder \
-        .master('k8s://https://lmtest.alphacario.com/k8s/clusters/c-dkpc4') \
+        .master('spark://stg-b1:7077') \
         .appName('demo') \
         .config('spark.kubernetes.pyspark.pythonVersion', '3') \
         .config('spark.cores.max', 2) \
         .config('spark.kubernetes.namespace', 'bigdata') \
         .config('spark.executor.instances', 1) \
-        .config('spark.kubernetes.container.image', 'leochan007/spark-py:v2.4.3') \
         .config('spark.mongodb.input.uri', 'mongodb://demo:demo@dev.luomuxinxi.com:31017/spark.test?authSource=admin') \
         .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.11:2.4.1') \
         .getOrCreate()
