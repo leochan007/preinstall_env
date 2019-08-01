@@ -26,7 +26,7 @@ output_uri = "mongodb://demo:demo@dev.luomuxinxi.com:31017/spark.spark_test?auth
 # 创建spark，默认使用本地环境，或者"spark://master:7077"
 spark = SparkSession \
     .builder \
-    .master("spark://stg-b1:7077") \
+    .master('spark://192.168.0.136:7077') \
     .appName("demo2") \
     .config("spark.mongodb.input.uri", input_uri) \
     .config("spark.mongodb.output.uri", output_uri) \

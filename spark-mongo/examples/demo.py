@@ -8,7 +8,7 @@ if __name__ == '__main__':
     #.config('spark.kubernetes.container.image', 'leochan007/spark-py:v2.4.3') \
 
     spark = SparkSession.builder \
-        .master('spark://stg-b1:7077') \
+        .master('spark://192.168.0.136:7077') \
         .appName('demo') \
         .config('spark.kubernetes.pyspark.pythonVersion', '3') \
         .config('spark.cores.max', 2) \
