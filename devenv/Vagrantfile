@@ -22,6 +22,12 @@ set -x
 
 cd /workspace/preinstall_env/devenv/scripts
 
+apt update
+
+apt install dos2unix
+
+dos2unix *.sh
+
 chmod a+x *.sh
 
 ./change_src.sh

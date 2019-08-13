@@ -1,8 +1,8 @@
 #!/bin/bash
 
-./fetch_cert.sh nexus.alphacario.com:8089
-
 ./install_docker-ce_ubuntu.sh
+
+./fetch_cert.sh repo.alphacario.com:8089
 
 #./install_java.sh
 
