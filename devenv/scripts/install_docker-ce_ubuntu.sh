@@ -1,15 +1,21 @@
 #!/bin/bash
 
-#sudo apt-get remove docker docker-engine docker.io
-sudo apt-get install -y \
-   apt-transport-https \
-   ca-certificates \
-   curl \
-   software-properties-common
+#https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-sudo curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-get remove docker docker-engine docker.io
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
 
-sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
 
 #curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #sudo add-apt-repository \
