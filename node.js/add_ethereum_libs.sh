@@ -1,8 +1,0 @@
-meteor add ethereum:web3
-meteor add ethereum:dapp-styles
-meteor add ethereum:tools
-meteor add ethereum:elements
-meteor add ethereum:accounts
-meteor add ethereum:blocks
-meteor add frozeman:template-var
-meteor add frozeman:persistent-minimongo2
