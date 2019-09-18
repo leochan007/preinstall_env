@@ -12,7 +12,8 @@ sudo update-grub
 
 sudo docker stop $(sudo docker ps -aq)
 sudo docker rm -v $(sudo docker ps -aq)
-sudo rm -rf /var/lib/etcd/* && sudo rm -rf /etc/kubernetes/*
+
+sudo rm -rf /var/lib/etcd/* /etc/kubernetes/* /var/log/auditlog/*
 
 sudo docker run -d --restart=unless-stopped \
   -p 18080:80 -p 18443:443 \
