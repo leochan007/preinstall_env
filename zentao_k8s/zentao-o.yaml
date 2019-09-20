@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     field.cattle.io/creatorId: ""
-    field.cattle.io/publicEndpoints: '[{"port":31180,"protocol":"TCP","serviceName":"pm:zentao-o-server-nodeport","allNodes":true}]'
+    field.cattle.io/publicEndpoints: '[{"port":31188,"protocol":"TCP","serviceName":"pm:zentao-o-server-nodeport","allNodes":true}]'
   labels:
     workload.user.cattle.io/workloadselector: deployment-pm-zentao-o-server
   name: zentao-o-server
@@ -23,7 +23,7 @@ spec:
   template:
     metadata:
       annotations:
-        field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"zentao-o-server-nodeport","kind":"NodePort","name":"80tcp311801","protocol":"TCP","sourcePort":31180}]]'
+        field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"zentao-o-server-nodeport","kind":"NodePort","name":"80tcp311881","protocol":"TCP","sourcePort":31188}]]'
       labels:
         workload.user.cattle.io/workloadselector: deployment-pm-zentao-o-server
     spec:
@@ -33,7 +33,7 @@ spec:
         name: zentao-o-server
         ports:
         - containerPort: 80
-          name: 80tcp311801
+          name: 80tcp311881
           protocol: TCP
         resources: {}
         securityContext:
