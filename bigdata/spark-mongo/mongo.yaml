@@ -1,0 +1,72 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  annotations:
+    field.cattle.io/creatorId: ""
+    field.cattle.io/publicEndpoints: '[{"port":31017,"protocol":"TCP","serviceName":"bigdata:mongo-rs-nodeport","allNodes":true}]'
+  creationTimestamp: "2019-09-24T06:01:10Z"
+  generation: 2
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: deployment-bigdata-mongo-rs
+  name: mongo-rs
+  namespace: bigdata
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-bigdata-mongo-rs
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":27017,"dnsName":"mongo-rs-nodeport","kind":"NodePort","name":"27017tcp310171","protocol":"TCP","sourcePort":31017}]]'
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-bigdata-mongo-rs
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: secret-mongo
+            optional: false
+        - configMapRef:
+            name: configmap-mongo-auth
+            optional: false
+        image: mongo:4.0.10-xenial
+        imagePullPolicy: Always
+        name: mongo-rs
+        ports:
+        - containerPort: 27017
+          name: 27017tcp310171
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /data/db
+          name: db-data-dir
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /data/mongodb
+          type: ""
+        name: db-data-dir

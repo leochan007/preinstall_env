@@ -6,17 +6,15 @@
 
 4. executor on k8s
 
-
-
 #start process
 
-#lmtest.alphacario.com
+#lmtest.luomuxinxi.com
 #spark-ui.luomuxinxi.com
 #47.103.84.242
 
 sbin/stop-master.sh
-SPARK_MASTER_HOST=192.168.0.136 SPARK_MASTER_PORT=7077 SPARK_WORKER_CORES=4 ./sbin/start-master.sh
-SPARK_MASTER_HOST=0.0.0.0 SPARK_MASTER_PORT=7077 SPARK_WORKER_CORES=4 ./sbin/start-master.sh
+SPARK_MASTER_HOST=192.168.0.136 SPARK_MASTER_PORT=7077 SPARK_WORKER_CORES=4 nohup ./sbin/start-master.sh &
+SPARK_MASTER_HOST=0.0.0.0 SPARK_MASTER_PORT=7077 SPARK_WORKER_CORES=4 nohup ./sbin/start-master.sh &
 ./sbin/start-master.sh --properties-file conf/spark-defaults.conf
 
 sbin/stop-slave.sh

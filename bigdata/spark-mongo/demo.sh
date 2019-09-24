@@ -2,7 +2,7 @@
 
 # --conf spark.app.name=demo-py-test \
 spark-submit \
-    --master k8s://https://lmtest.alphacario.com/k8s/clusters/c-dkpc4 \
+    --master k8s://https://lmtest.luomutrip.com/k8s/clusters/c-dkpc4 \
     --deploy-mode cluster \
     --name demo-py \
     --conf spark.kubernetes.namespace=bigdata \
