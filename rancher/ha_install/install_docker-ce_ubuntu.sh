@@ -8,9 +8,10 @@ sudo apt-get install -y \
    curl \
    software-properties-common
 
+sudo curl -fsSL http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 sudo curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 
-sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 
 #curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #sudo add-apt-repository \
@@ -22,9 +23,9 @@ sudo apt-get update
 
 apt-cache madison docker-ce
 
-#sudo apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-bionic
-sudo apt-get install -y docker-ce
+sudo apt-get install -y docker-ce=5:18.09.9~3-0~ubuntu-bionic
+
 #sudo groupadd docker
-sudo gpasswd -a vagrant docker
-sudo service docker restart
-newgrp - docker
+#sudo gpasswd -a vagrant docker
+#sudo service docker restart
+#newgrp - docker

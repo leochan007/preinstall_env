@@ -1,0 +1,19 @@
+nodes:
+  - address: 47.103.155.208
+    internal_address: 192.168.0.142
+    user: root
+    role: [controlplane,worker,etcd]
+  - address: 47.102.157.15
+    internal_address: 192.168.0.140
+    user: root
+    role: [controlplane,worker,etcd]
+  - address: 47.102.87.58
+    internal_address: 192.168.0.138 
+    user: root
+    role: [controlplane,worker,etcd]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
