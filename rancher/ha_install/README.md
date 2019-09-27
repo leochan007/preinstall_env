@@ -44,3 +44,17 @@ helm install rancher-stable/rancher \
   --namespace cattle-system \
   --set hostname=rlb.luomutrip.com \
   --set tls=external
+
+# recovery
+rke etcd snapshot-save --name snapshot.db --config rancher-cluster.yml
+
+RKE会获取每个etcd节点的快照，并保存在每个etcd节点的/opt/rke/etcd-snapshots目录下
+
+# 模拟故障
+./sim_error.sh
+
+# 恢复ETCD数据
+rke etcd snapshot-restore --name snapshot.db --config rancher-cluster.yml
+
+# 恢复集群
+rke up --config rancher-cluster.yml
